@@ -1,18 +1,38 @@
-# 🦴 BONELESS — Human-Readable Data Format
+# 🦴 BONELESS — Human-Readable Data Format  
 
 **Extensión:** `.boneless`  
 **Pronunciación:** _/ˈboʊnləs/_  
-**Significado:** “Sin huesos” → sin la rigidez de JSON 🧠
+**Significado:** “Sin huesos” → sin rigidez, sin peso innecesario.  
+
+---
+
+## 💭 Introducción
+
+**BONELESS** nació de una idea sencilla:  
+> los datos no deberían sentirse como un castigo.  
+
+Fue creado **por desarrolladores, para desarrolladores**, cansados de pelear con llaves, comas y comillas.  
+Cansados de perder tiempo en sintaxis, cuando lo que realmente quieren es **expresar estructuras, no escribir fórmulas**.  
+
+Este formato no intenta reemplazar a JSON — lo **libera**.  
+Le quita los huesos, las capas innecesarias, la frialdad de la máquina.  
+Porque un programador **no es un autómata**, es una persona con creatividad, con cansancio, con noches sin dormir y una taza de café al lado.  
+
+BONELESS es un recordatorio de que **los datos también pueden tener alma**.  
+Que el código puede ser más humano.  
+Que a veces, **lo simple también puede ser poderoso**.
 
 ---
 
 ## 📘 Descripción general
 
-**BONELESS** es un formato de intercambio de datos estructurado, **legible por humanos**, inspirado en JSON y YAML, pero diseñado desde cero con tres objetivos:
+**BONELESS** es un formato de intercambio de datos **legible, expresivo y humano**, inspirado en JSON y YAML, pero diseñado desde cero con tres ideales:
 
-1. **Evitar la verbosidad de JSON** (comas, llaves, comillas innecesarias).  
-2. **Permitir comentarios nativos** y **tipos explícitos**.  
-3. **Mantener compatibilidad conceptual** con estructuras de objetos y listas, para facilitar su conversión a JSON, XML o TOML.
+1. **Evitar la rigidez de los formatos tradicionales.**  
+2. **Facilitar el mockeo rápido y la experimentación libre.**  
+3. **Recordar que los desarrolladores no somos robots.**  
+
+Está pensado para quienes escriben datos a mano, configuran servicios, o crean prototipos sin tener que pensar en cada coma.
 
 ---
 
@@ -43,6 +63,12 @@ user {
 }
 ```
 
+🟢 **Ventajas:**
+- No requiere comillas ni comas innecesarias.  
+- Soporta comentarios.  
+- Usa indentación natural.  
+- Se lee como una conversación, no como un dictado.  
+
 ---
 
 ## 🔤 Sintaxis general
@@ -50,9 +76,9 @@ user {
 | Elemento | Descripción | Ejemplo |
 |-----------|--------------|----------|
 | **Bloque de objeto** | Se abre con `{` y se cierra con `}`. | `config { theme: dark }` |
-| **Lista** | Se marca con `-` o con corchetes `[ ... ]`. | `items: - a - b - c` |
+| **Lista** | Se marca con `-` o `[ ... ]`. | `items: - a - b - c` |
 | **Strings** | Sin comillas si no contienen espacios o símbolos. | `name: Tomas` |
-| **Comentarios** | Se marcan con `#` o `###` (bloques). | `# Comentario` |
+| **Comentarios** | `#` o `###` (bloques). | `# Comentario` |
 | **Tipos explícitos** | Prefijos y sufijos para valores especiales. | `date: @2025-11-04` |
 
 ---
@@ -71,6 +97,16 @@ types_demo {
 }
 ```
 
+| Prefijo / Sufijo | Tipo | Ejemplo |
+|-------------------|------|----------|
+| `@` | Fecha o timestamp | `@2025-11-04T14:25:00Z` |
+| `°` | Temperatura | `°36.7` |
+| `b64:` | Binario | `b64:U29tZUJhc2U2NERhdGE=` |
+| `/.../` | Expresión regular | `/ZF\d{4}/` |
+| `#rrggbb` | Color | `#ff9933` |
+| `$` | Moneda | `$42.50` |
+| `m`, `v`, `Ω`, `kg`, etc. | Unidad | `12.6v`, `5.1Ω` |
+
 ---
 
 ## 💬 Comentarios
@@ -83,6 +119,8 @@ user {
   experience_years: 8
 }
 ```
+
+Comentarios que se leen como notas entre colegas, no advertencias del compilador.
 
 ---
 
@@ -119,19 +157,12 @@ solenoids {
 
 ---
 
-## 🧬 Gramática básica (pseudo-BNF)
+## 🧩 Filosofía
 
-```ebnf
-document      ::= (statement | comment)+
-statement     ::= key ":" value | key object | "-" object
-object        ::= "{" statement* "}"
-key           ::= identifier
-value         ::= string | number | boolean | special
-comment       ::= "#" text | "###" text "###"
-special       ::= date | color | regex | binary | unit
-date          ::= "@" ISO8601
-color         ::= "#" HEX
-regex         ::= "/" pattern "/"
-binary        ::= "b64:" BASE64
-unit          ::= NUMBER UNIT
-```
+> “El código también puede ser poesía.”  
+
+BONELESS no es solo un formato: es un pequeño acto de rebeldía contra la rigidez.  
+Es para quienes escriben a las 3 a.m. con música lo-fi, que buscan que los datos **tengan sentido, no solo estructura**.  
+Para quienes saben que **la productividad también nace del descanso, del orden y de la belleza**.
+
+BONELESS recuerda que programar es un arte hecho por personas — no por autómatas.
